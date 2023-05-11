@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Викладачі</title>
+    <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}">
+    <link th:rel="stylesheet" type="text/css" th:href="styles.css">
+</head>
+<style>
+    body {
+        background-image: url(https://images.wallpaperscraft.ru/image/single/fon_sploshnoj_svetlyj_44011_1920x1080.jpg);
+    }
+</style>
+<body>
+
+<div class="headW">
+    <a th:href="@{/returnT}"  >Головна</a>
+    <a class="active" href="#teacher">Викладчі</a>
+    <a th:href="schedul">Розклад</a>
+    <a th:href="discipline">Предмети</a>
+</div>
+
+<h1 th:text="|Список Викладачів|" class="clr" ></h1>
+
+<table class="table table-sm table-dark table-striped-columns table-bordered border-light">
+
+    <thead class="table-warning table-dark text-center text-white ">
+    <tr>
+        <th>Id</th>
+        <th>ПІб</th>
+        <th>Електрона пошта</th>
+        <th>Номер Телефону</th>
+        <th>X</th>
+        <th>Предмет</th>
+        <th>Редагувати</th>
+    </tr>
+    </thead>
+
+    <tbody class="text-white">
+    <tr  th:each="t : ${teacher}">
+        <td th:text="${t.id}" ></td>
+        <td th:text="${t.name}"></td>
+        <td th:text="${t.mail}"></td>
+        <td th:text="${t.phone}"></td>
+        <td><a th:href="@{/delete_teacher(id=${t.id})}" class="btn btn-outline-danger">Delete</a>
+        <td><a th:href="@{/teacher_discipline(id=${t.id})}" class="btn btn-outline-info">discipline</a></td>
+        <td><a th:href="@{/teacher_edit(id=${t.id})}" class="btn btn-outline-secondary" >edit</a></td>
+
+    </tr>
+
+    </tbody>
+</table>
+
+<form action="addteacher" method="post">
+    <input type="text" name="name" placeholder="name">
+    <input type="text" name="mail" placeholder="mail">
+    <input type="number" name="phone" placeholder="phone">
+    <input type="submit" value="Add" class="btn btn-primary">
+
+</form>
+<script th:src="@{/webjars/jquery/3.6.4/dist/jquery.js}"></script>
+<script th:src="@{/webjars/popperjs__core/2.11.7/dist/umd/popper.js}"></script>
+<script th:src="@{/webjars/bootstrap/5.3.0-alpha2/dist/js/bootstrap.bundle.js}"></script>
+</body>
+</html>

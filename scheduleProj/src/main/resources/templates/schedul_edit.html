@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редагування</title>
+    <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}">
+    <link th:rel="stylesheet" type="text/css" th:href="styles.css">
+</head>
+<style>
+    body {
+        background-image: url(https://images.wallpaperscraft.ru/image/single/fon_sploshnoj_svetlyj_44011_1920x1080.jpg);
+    }
+</style>
+<body>
+<div class="headW">
+    <a th:href="@{/returnT}">Головна</a>
+    <a th:href="teacher">Викладчі</a>
+    <a th:href="schedul">Розклад</a>
+    <a th:href="discipline">Предмети</a>
+</div>
+<h1 class="clr">Редагувати Розклад</h1>
+<form action="update_schedul" method="post">
+    <input type="hidden" name="id" th:value="${schedul.id}">
+
+    <label for="time" class="form-control-sm clr">Початок пари</label><br/>
+    <input type="text" th:value="${schedul.time}" id="time" name="time" class="form-control-sm"><br/>
+
+    <label for="group" class="form-control-sm clr">Група</label><br/>
+    <input type="number" th:value="${schedul.group}" id="group" name="group" class="form-control-sm"><br/>
+
+    <label for="discipline" class="form-control-sm clr">Предмет</label><br/>
+    <input type="text" th:value="${schedul.discipline}" id="discipline" name="discipline" class="form-control-sm"><br/>
+
+    <label for="teacher" class="form-control-sm clr">Викладач</label><br/>
+    <input type="text" th:value="${schedul.teacher}" id="teacher" name="teacher" class="form-control-sm"><br/>
+
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>
+<script th:src="@{/webjars/jquery/3.6.4/dist/jquery.js}"></script>
+<script th:src="@{/webjars/popperjs__core/2.11.7/dist/umd/popper.js}"></script>
+<script th:src="@{/webjars/bootstrap/5.3.0-alpha2/dist/js/bootstrap.bundle.js}"></script>
+</body>
+</html>

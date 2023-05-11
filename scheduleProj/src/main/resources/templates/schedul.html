@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Розклад</title>
+    <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}">
+    <link th:rel="stylesheet" type="text/css" th:href="styles.css">
+</head>
+<style>
+    body {
+        background-image: url(https://images.wallpaperscraft.ru/image/single/fon_sploshnoj_svetlyj_44011_1920x1080.jpg);
+    }
+</style>
+<body>
+<div class="headW">
+    <a th:href="@{/returnT}"  >Головна</a>
+    <a th:href="teacher">Викладчі</a>
+    <a class="active" href="#schedul">Розклад</a>
+    <a th:href="discipline">Предмети</a>
+</div>
+<h1 th:text="|Розклад Занять|" class="clr"></h1>
+<table class="table table-sm table-dark table-striped-columns table-bordered border-light">
+
+    <thead class="table-warning table-dark text-center text-white">
+    <tr>
+        <th>Id</th>
+        <th>Початок пари</th>
+        <th>Група</th>
+        <th>Предмет</th>
+        <th>Викладач</th>
+        <th>X</th>
+        <th>Дані Викладача</th>
+        <th>Редагувати</th>
+
+    </tr>
+    </thead>
+
+    <tbody class="text-white">
+    <tr th:each="s : ${schedul}">
+        <td th:text="${s.id}"></td>
+        <td th:text="${s.time}"></td>
+        <td th:text="${s.group}"></td>
+        <td th:text="${s.discipline}"></td>
+        <td th:text="${s.teacher}"></td>
+        <td><a th:href="@{/delete_schedul(id=${s.id})}" class="btn btn-outline-danger">Delete</a>
+        <td><a th:href="@{/schedul_teacher(id=${s.id})}" class="btn btn-outline-info">Teacher</a></td>
+        <td><a th:href="@{/schedul_edit(id=${s.id})}" class="btn btn-outline-secondary" >edit</a></td>
+
+
+    </tr>
+    </tbody>
+</table>
+
+<form action="addschedul" method="post">
+    <input type="text" name="time" placeholder="time">
+    <input type="number" name="group" placeholder="group">
+    <input type="text" name="discipline" placeholder="discipline">
+    <input type="text" name="teacher" placeholder="teacher">
+    <input type="submit" value="Add" class="btn btn-primary">
+
+</form>
+<script th:src="@{/webjars/jquery/3.6.4/dist/jquery.js}"></script>
+<script th:src="@{/webjars/popperjs__core/2.11.7/dist/umd/popper.js}"></script>
+<script th:src="@{/webjars/bootstrap/5.3.0-alpha2/dist/js/bootstrap.bundle.js}"></script>
+</body>
+</html>
